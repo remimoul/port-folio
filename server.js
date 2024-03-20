@@ -14,6 +14,8 @@ app.use("/user", userRoute);
 const projetRoute = require("./src/back-end/routes/projetRoute");
 app.use("/projet", projetRoute);
 
+const infopersoRoute = require("./src/back-end/routes/infopersoRoute");
+app.use("/infoperso", infopersoRoute);
 
 app.listen(port, () => {
     console.log(`app listening on port ${port}`);
