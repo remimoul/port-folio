@@ -11,9 +11,8 @@ app.use(express.json());
 const userRoute = require("./src/back-end/routes/userRoute");
 app.use("/user", userRoute);
 
-// const projetRoute = require("./src/back-end/routes/projetRoute");
-// app.use("/projet", projetRoute);
-
+const projetRoute = require("./src/back-end/routes/projetRoute");
+app.use("/projet", projetRoute);
 
 
 app.listen(port, () => {
