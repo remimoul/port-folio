@@ -12,7 +12,7 @@ function NavBar(){
           </div>
           <div className={style.center}>
             <ul>
-              <li>Accueil</li>
+              <li>Home</li>
               <li>Qui suis-je ?</li>
               <li>Mes projets</li>
               <li>Expériences</li>

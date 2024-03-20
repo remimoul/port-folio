@@ -7,7 +7,7 @@ router
  
 router
   .route("/update/:projet_id")
-  .post(projetControllers.updateProjet);
+  .put(projetControllers.updateProjet);
 
 router
   .route("/delete/:projet_id")
