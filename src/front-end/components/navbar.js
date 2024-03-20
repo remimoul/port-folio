@@ -12,8 +12,10 @@ function NavBar(){
           </div>
           <div className={style.center}>
             <ul>
+              <li>Accueil</li>
+              <li>Qui suis-je ?</li>
               <li>Mes projets</li>
-              <li>Expérience</li>
+              <li>Expériences</li>
               <li>Contact</li>
             </ul>
           </div>
