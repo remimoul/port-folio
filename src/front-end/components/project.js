@@ -7,7 +7,7 @@ import Card from '../components/card';
 function Project() {
   const [data, setData] = useState(null);
   useEffect(() => {
-    fetch('http://localhost:3005/projet/all')
+    fetch('../back-end/routes/projetRoute.js/all')
       .then((response) => response.json())
       .then((data) => setData(data))
       .catch((error) => console.error('Erreur:', error));
@@ -22,7 +22,8 @@ function Project() {
 
       <div className="relative mt-8 max-lg:mx-6">
         {/* THE Card */}
-        <div>{data && data.map((item, index) => <Card key={index} data={item} />)}</div>
+        <div className="gap-4"></div>
+        <div className="">{data && data.map((item, index) => <Card key={index} data={item} />)}</div>
       </div>
     </div>
   );
