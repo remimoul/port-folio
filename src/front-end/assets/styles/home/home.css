@@ -1,24 +1,25 @@
 @import url('https://fonts.googleapis.com/css?family=Satisfy');
 
-.home{
-    margin-top:0px;
-    height:600px;
-    width:100%;
-    padding-top:80px;
-    background-image:url("https://wallpapercave.com/wp/QNQaTlD.jpg");
-  }
-  
-  .home h1,h4{
-    color:white;
-    font-size:30px;
-  }
-  .home-text{
-    margin:100px 10px 10px 10px;
-    text-align:center;
-    color:black;
-  }
-  .home-text h1{
-    font-size:90px;
-    font-family: 'Satisfy', cursive;
-    margin-bottom:25px;
-  }
+.home {
+  margin-top: 0px;
+  height: 600px;
+  width: 100%;
+  padding-top: 80px;
+  /* background-image:url("https://wallpapercave.com/wp/QNQaTlD.jpg"); */
+}
+
+.home h1,
+h4 {
+  color: white;
+  font-size: 30px;
+}
+.home-text {
+  margin: 100px 10px 10px 10px;
+  text-align: center;
+  color: black;
+}
+.home-text h1 {
+  font-size: 90px;
+  font-family: 'Satisfy', cursive;
+  margin-bottom: 25px;
+}

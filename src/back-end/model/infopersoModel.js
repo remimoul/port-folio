@@ -1,23 +1,19 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let projetSchema = new Schema({
-  title: {
+let infopersoSchema = new Schema({
+  name: {
     type: String,
     required: true,
   },
-  description: {
+  bio: {
     type: String,
     required: true,
   },
-  imageUrl: {
-    type: String,
-    required: true,
-  },
-  link: {
+  profilePictureUrl: {
     type: String,
     required: true,
   },
 });
 
-module.exports = mongoose.model('Projet', projetSchema);
+module.exports = mongoose.model('Infoperso', infopersoSchema);

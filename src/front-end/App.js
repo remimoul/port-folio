@@ -1,22 +1,17 @@
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import HomePage from '../front-end/components/home';
+import AboutPage from '../front-end/components/whoiam';
+import Experience from '../front-end/components/experience';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={{}} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Bonjour tout le monde !
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/about" component={AboutPage} />
+        <Route path="/experience" component={Experience} />
+      </Routes>
+    </Router>
   );
 }
 
