@@ -1,4 +1,4 @@
-const Projet = require("../model/projetModel");
+const Projet = require('../model/projetModel');
 
 exports.addProjet = async (req, res) => {
   try {
@@ -18,13 +18,13 @@ exports.updateProjet = async (req, res) => {
     });
 
     if (!projet) {
-      return res.status(404).json({ message: "Projet non trouvé" });
+      return res.status(404).json({ message: 'Projet non trouvé' });
     }
 
     res.status(200).json(projet);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Erreur lors de la mise à jour du projet" });
+    res.status(500).json({ message: 'Erreur lors de la mise à jour du projet' });
   }
 };
 
@@ -33,27 +33,27 @@ exports.deleteProjet = async (req, res) => {
     const projet = await Projet.findByIdAndDelete(req.params.projet_id);
 
     if (!projet) {
-      return res.status(404).json({ message: "Projet non trouvé" });
+      return res.status(404).json({ message: 'Projet non trouvé' });
     }
 
-    res.status(200).json({ message: "Projet supprimé" });
+    res.status(200).json({ message: 'Projet supprimé' });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Erreur lors de la suppression du projet" });
+    res.status(500).json({ message: 'Erreur lors de la suppression du projet' });
   }
 };
 
 exports.getProjet = async (req, res) => {
   try {
-    const projet = await Projet.findById(req.params.projet_id);
+    const projet = await Projet.find();
 
     if (!projet) {
-      return res.status(404).json({ message: "Projet non trouvé" });
+      return res.status(404).json({ message: 'Projet non trouvé' });
     }
 
     res.status(200).json(projet);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Erreur lors de la récupération du projet" });
+    res.status(500).json({ message: 'Erreur lors de la récupération du projet' });
   }
 };

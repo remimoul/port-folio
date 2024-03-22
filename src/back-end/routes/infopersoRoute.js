@@ -1,21 +1,13 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const infopersoControllers = require("../controllers/infopersoController");
+const infopersoControllers = require('../controllers/infopersoController');
 
-router
-  .route("/add").post(infopersoControllers.addInfoPerso);
- 
-router
-  .route("/update/:infoperso_id")
-  .put(infopersoControllers.updateInfoPerso);
+router.route('/add').post(infopersoControllers.addInfoperso);
 
-router
-  .route("/delete/:infoperso_id")
-  .delete(infopersoControllers.deleteInfoPerso);
+router.route('/update/:infoperso_id').put(infopersoControllers.updateInfoperso);
 
-router
-    .route("/:infoperso_id")
-    .get(infopersoControllers.getInfoPerso);
+router.route('/delete/:infoperso_id').delete(infopersoControllers.deleteInfoperso);
 
+router.route('/:infoperso_id').get(infopersoControllers.getInfoperso);
 
 module.exports = router;

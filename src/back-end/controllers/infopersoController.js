@@ -1,4 +1,4 @@
-const Infoperso = require("../model/infopersoModel");
+const Infoperso = require('../model/infopersoModel');
 
 exports.addInfoperso = async (req, res) => {
   try {
@@ -18,7 +18,7 @@ exports.updateInfoperso = async (req, res) => {
     });
 
     if (!infoperso) {
-      return res.status(404).json({ message: "Information personnelle non trouvée" });
+      return res.status(404).json({ message: 'Information personnelle non trouvée' });
     }
 
     res.status(200).json(infoperso);
@@ -33,10 +33,10 @@ exports.deleteInfoperso = async (req, res) => {
     const infoperso = await Infoperso.findByIdAndDelete(req.params.infoperso_id);
 
     if (!infoperso) {
-      return res.status(404).json({ message: "Information personnelle non trouvée" });
+      return res.status(404).json({ message: 'Information personnelle non trouvée' });
     }
 
-    res.status(200).json({ message: "Information personnelle supprimée" });
+    res.status(200).json({ message: 'Information personnelle supprimée' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Erreur lors de la suppression de l'information personnelle" });
@@ -48,7 +48,7 @@ exports.getInfoperso = async (req, res) => {
     const infoperso = await Infoperso.findById(req.params.infoperso_id);
 
     if (!infoperso) {
-      return res.status(404).json({ message: "Information personnelle non trouvée" });
+      return res.status(404).json({ message: 'Information personnelle non trouvée' });
     }
 
     res.status(200).json(infoperso);

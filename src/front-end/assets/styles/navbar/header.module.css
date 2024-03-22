@@ -29,10 +29,10 @@
   cursor: pointer;
 }
 .header .headerContainer .center ul li::after {
-  content: "";
+  content: '';
   width: 0%;
   height: 3px;
-  background-color: #008793;
+
   position: absolute;
   bottom: 0%;
   left: 50%;
@@ -42,7 +42,6 @@
 .header .headerContainer .center ul li:hover {
   transition: 0.3s;
   color: #008793;
-  
 }
 .header .headerContainer .center ul li:hover::after {
   width: 100%;
