@@ -4,7 +4,7 @@ const port = 3005;
 const cors = require('cors');
 
 const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB);
+mongoose.connect('mongodb://localhost:27017/portfolio');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
