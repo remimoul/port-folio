@@ -9,7 +9,7 @@ function Login() {
   const loginSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch('https://localhost:3005/user/login', {
+    const response = await fetch('http://localhost:3005/user/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -22,6 +22,7 @@ function Login() {
     if (response.ok) {
       // Login successful
       console.log('Login successful', data);
+      localStorage.setItem('token', data.token);
       navigate('/dashboard');
     } else {
       // Login failed
@@ -35,14 +36,14 @@ function Login() {
         <input
           className="w-full py-2 px-3 rounded text-white bg-black bg-opacity-30 border border-black border-opacity-30 shadow-inner"
           type="text"
-          placeholder="Username"
+          placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           className="w-full py-2 px-3 rounded text-white bg-black bg-opacity-30 border border-black border-opacity-30 shadow-inner"
           type="password"
-          placeholder="Password"
+          placeholder="Mot de passe"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />

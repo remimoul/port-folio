@@ -12,11 +12,11 @@ function Project() {
   }, []);
 
   return (
-    <div className="m-auto max-w-7xl w-full relative pt-20">
+    <div className="m-auto max-w-7xl w-full relative pt-28">
       <div className="flex items-center gap-2 w-fit mx-20 ">
-        <h1 className="text-4xl font-bold text-white">Projets</h1>
+        <h1 className="text-4xl font-bold text-white">Projets :</h1>
       </div>
-      <p className="text-1xl italic mx-20 text-white">Voici les différents projets que j'ai crée ☺️​ : </p>
+      {/* <p className="text-1xl italic mx-20 text-white">Voici les différents projets que j'ai crée ☺️​ : </p> */}
 
       <div className="relative mt-8 max-lg:mx-6 grid grid-cols-auto-fill">
         {/* THE Card */}

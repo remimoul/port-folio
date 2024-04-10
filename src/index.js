@@ -11,6 +11,8 @@ import AboutPage from './front-end/components/whoiam';
 import Experience from './front-end/components/experience';
 import Contact from './front-end/components/contact';
 import Login from './front-end/components/login';
+import Dashboard from './front-end/components/dashboard';
+import AuthWrapper from './front-end/components/authToken';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -24,6 +26,7 @@ root.render(
         <Route path="/experience" element={<Experience />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<AuthWrapper><Dashboard /></AuthWrapper> } />
       </Routes>
     </Router>
   </React.StrictMode>,
