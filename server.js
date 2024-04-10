@@ -18,6 +18,9 @@ app.use('/projet', projetRoute);
 const infopersoRoute = require('./src/back-end/routes/infopersoRoute');
 app.use('/infoperso', infopersoRoute);
 
+const exproRoute = require('./src/back-end/routes/exproRoute');
+app.use('/expro', exproRoute);
+
 app.listen(port, () => {
   console.log(`app listening on port ${port}`);
 });

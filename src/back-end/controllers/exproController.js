@@ -1,38 +1,38 @@
-const Infoperso = require('../model/infopersoModel');
+const ExPro = require('../model/exproModel');
 
-exports.addInfoperso = async (req, res) => {
+exports.addInfopro = async (req, res) => {
   try {
-    const newInfoperso = new Infoperso(req.body);
-    const infoperso = await newInfoperso.save();
-    res.status(201).json(infoperso);
+    const newExPro = new ExPro(req.body);
+    const expro = await newExPro.save();
+    res.status(201).json(expro);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Erreur lors de l'ajout de l'information personnelle" });
+    res.status(500).json({ message: "Erreur lors de l'ajout de l'information professionnel" });
   }
 };
 
-exports.updateInfoperso = async (req, res) => {
+exports.updateInfopro = async (req, res) => {
   try {
-    const infoperso = await Infoperso.findByIdAndUpdate(req.params.infoperso_id, req.body, {
+    const infopro = await ExPro.findByIdAndUpdate(req.params.expro_id, req.body, {
       new: true,
     });
 
-    if (!infoperso) {
+    if (!infopro) {
       return res.status(404).json({ message: 'Information personnelle non trouvée' });
     }
 
-    res.status(200).json(infoperso);
+    res.status(200).json(infopro);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Erreur lors de la mise à jour de l'information personnelle" });
   }
 };
 
-exports.deleteInfoperso = async (req, res) => {
+exports.deleteInfopro = async (req, res) => {
   try {
-    const infoperso = await Infoperso.findByIdAndDelete(req.params.infoperso_id);
+    const infopro = await ExPro.findByIdAndDelete(req.params.expro_id);
 
-    if (!infoperso) {
+    if (!infopro) {
       return res.status(404).json({ message: 'Information personnelle non trouvée' });
     }
 
@@ -43,15 +43,15 @@ exports.deleteInfoperso = async (req, res) => {
   }
 };
 
-exports.getInfoperso = async (req, res) => {
+exports.getInfopro = async (req, res) => {
   try {
-    const infoperso = await Infoperso.find();
+    const infopro = await ExPro.find();
 
-    if (!infoperso) {
+    if (!infopro) {
       return res.status(404).json({ message: 'Information personnelle non trouvée' });
     }
 
-    res.status(200).json(infoperso);
+    res.status(200).json(infopro);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Erreur lors de la récupération de l'information personnelle" });
