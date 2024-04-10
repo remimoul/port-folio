@@ -21,15 +21,15 @@ function Home() {
         développeur. Actuellement, j'étudie en à la MyDigitalSchool (Bachelor) pour devenir développeur full-stack.
       </p>
 
-      <h2 className="text-5xl font-bold font-mono italic mt-16 mx-20 text-white">Skill</h2>
-      <div className="flex mt-10">
-        <img className="w-15 h-16 mr-auto" alt="react" src={ReactLogo} />
-        <img className="w-15 h-16 mr-auto" alt="node" src={NodeLogo} />
-        <img className="w-15 h-16 mr-auto" alt="mongo" src={MongoLogo} />
-        <img className="w-15 h-16 mr-auto" alt="tailwind" src={TailwindLogo} />
-        <img className="w-15 h-16 mr-auto" alt="github" src={GithubLogo} />
-        <img className="w-15 h-16 mr-auto" alt="gitlab" src={GitlabLogo} />
-      </div>
+      <h2 className="text-5xl font-bold font-mono italic mt-16 mx-20 text-white flex ">Skill</h2>
+      <div className="flex md:justify-start justify-center mt-10 mb-12 md:mb-0">
+  <img className="w-15 h-16 mx-2 md:mr-auto" alt="react" src={ReactLogo} />
+  <img className="w-15 h-16 mx-2 md:mr-auto" alt="node" src={NodeLogo} />
+  <img className="w-15 h-16 mx-2 md:mr-auto" alt="mongo" src={MongoLogo} />
+  <img className="w-15 h-16 mx-2 md:mr-auto" alt="tailwind" src={TailwindLogo} />
+  <img className="w-15 h-16 mx-2 md:mr-auto" alt="github" src={GithubLogo} />
+  <img className="w-15 h-16 mx-2 md:mr-auto" alt="gitlab" src={GitlabLogo} />
+</div>
     </div>
   );
 }

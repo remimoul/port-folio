@@ -42,9 +42,11 @@ function TableProjet(){
 
   const addOneProjet = async () => {
     try {
+      const token = localStorage.getItem('token');
       const response = await fetch('http://localhost:3005/projet/add', {
         method: 'POST',
-        headers: {  'Content-Type': 'application/json' },
+        headers: {  'Content-Type': 'application/json',
+        'authorization': token,},
         body: JSON.stringify(newProjet),
       });
 
@@ -61,11 +63,13 @@ function TableProjet(){
     }
   };
 
-  const updateProjet = async (id) => {
+  const updateProjet = async () => {
     try {
+      const token = localStorage.getItem('token');
       const response = await fetch(`http://localhost:3005/projet/update/${editingProjet._id}`, {
         method: 'PUT',
-        headers: {  'Content-Type': 'application/json' },
+        headers: {  'Content-Type': 'application/json',
+        'authorization':token,},
         body: JSON.stringify(editingProjet),
       });
 
@@ -112,8 +116,11 @@ function TableProjet(){
               style={{ marginLeft: 16 }}
               onClick={async () => {
                 try {
+                  const token = localStorage.getItem('token');
                   const response = await fetch(`http://localhost:3005/projet/delete/${params.row._id}`, {
                     method: 'DELETE',
+                    headers: {  'Content-Type': 'application/json',
+                    'authorization':token, },
                   });
     
                   if (!response.ok) {
@@ -183,7 +190,7 @@ function TableProjet(){
           />
           <TextField
             name="link"
-            label="Link"
+            label="Lien GitHub"
             value={editingProjet ? editingProjet.link : newProjet.link}
             onChange={inputChangeProjet}
             fullWidth

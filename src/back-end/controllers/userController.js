@@ -4,6 +4,8 @@ const jwt = require('jsonwebtoken');
 const validator = require('validator');
 require('dotenv').config();
 
+
+
 exports.userLogin = async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email });

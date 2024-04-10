@@ -27,6 +27,7 @@ root.render(
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<AuthWrapper><Dashboard /></AuthWrapper> } />
+        
       </Routes>
     </Router>
   </React.StrictMode>,
