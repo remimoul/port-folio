@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Photo from '../assets/image/profile-pic.png';
 
 function Contact() {
   const [name, setName] = useState('');
@@ -12,50 +13,31 @@ function Contact() {
     console.log({ name, email, subject, message });
   };
   return (
-    <div className="m-auto max-w-3xl w-full relative pt-40">
-      <h1 className="text-4xl font-bold font-mono text-white mb-8">Contactez-moi : </h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <label className="block">
-          <span className="text-white font-mono">Nom:</span>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-          />
-        </label>
-        <label className="block">
-          <span className="text-white font-mono">Email:</span>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-          />
-        </label>
-        <label className="block">
-          <span className="text-white font-mono">Sujet:</span>
-          <input
-            type="text"
-            value={subject}
-            onChange={(e) => setSubject(e.target.value)}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-          />
-        </label>
-        <label className="block">
-          <span className="text-white font-mono">Message:</span>
-          <textarea
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-          />
-        </label>
-        <input
-          type="submit"
-          value="Envoyer"
-          className="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        />
+
+    <div className='w-auto mx-7 pt-28 flex justify-center items-center'>
+      <section className="w-full h-full flex flex-col justify-center items-center my-12">
+  <div className="contact-container max-w-full max-w-[960px] grid grid-cols-2 gap-1 md:gap-0 shadow-lg shadow-black rounded-lg navbar md:mx-auto md:w-90 lg:w-auto">
+    <div className="form-container w-full md:w-1/2 px-2">
+      <h3 className="mx-2 my-2 font-bold text-slate-50">VOTRE MESSAGE</h3>
+      <form action="" className="contact-form">
+        <input type="text" placeholder="Votre Nom" required className="mx-auto my-2 rounded-sm" />
+        <input type="email" name="" id="" placeholder="Entrez votre Email" required className="mx-auto rounded-sm" />
+        <br />
+        <textarea name="" id="" cols="30" rows="10" placeholder="Ecrivez votre message ! :)" required className="mx-auto my-2 rounded-sm"></textarea>
+        <button type="submit" className="my-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Envoyer</button>
       </form>
+    </div>
+    <div className="map h-400 md:h-auto">
+    <img className="w-15 h-16 mr-auto" alt="remi" src={Photo} />
+    <h1 className="text-2xl font-bold font-mono italic mt-4 mx-20 text-white">Mes coordonnées</h1>
+    <div className="flex flex-col items-center ">
+  <span className="text-2xl font-mono italic mt-4 mx-20 text-white">Email: moulremi@orange.fr</span>
+  <span className="text-2xl font-mono italic mt-4 mx-20 text-white">Téléphone: 06 52 50 50 50</span>
+</div>
+   
+    </div>
+  </div>
+</section>
     </div>
   );
 }

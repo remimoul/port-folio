@@ -8,6 +8,4 @@ router.route('/register').post(userControllers.createAUser);
 
 router.route('/:user_id').put(userControllers.updateUser).delete(userControllers.deleteUser);
 
-
-
 module.exports = router;

@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import CardActions from '@mui/material/CardActions';
 export default function ActionAreaCard({ data }) {
   return (
-    <Card sx={{ maxWidth: 345 }} className="ml-10 my-4">
+    <Card sx={{ maxWidth: 345 }} className="ml-10 my-4" >
       <CardActionArea>
         <CardMedia
           component="img"
