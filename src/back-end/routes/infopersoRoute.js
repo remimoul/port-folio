@@ -8,6 +8,6 @@ router.route('/update/:infoperso_id').put(infopersoControllers.updateInfoperso);
 
 router.route('/delete/:infoperso_id').delete(infopersoControllers.deleteInfoperso);
 
-router.route('/:infoperso_id').get(infopersoControllers.getInfoperso);
+router.route('/all').get(infopersoControllers.getInfoperso);
 
 module.exports = router;
