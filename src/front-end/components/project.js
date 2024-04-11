@@ -5,7 +5,7 @@ import CardTest from '../components/cardtest';
 function Project() {
   const [data, setData] = useState(null);
   useEffect(() => {
-    fetch('http://localhost:3005/projet/all')
+    fetch('../back-end/routes/projetRoute.js/all')
       .then((response) => response.json())
       .then((data) => setData(data))
       .catch((error) => console.error('Erreur:', error));
@@ -22,6 +22,7 @@ function Project() {
         {/* THE Card */}
         {/* <div>{data && data.map((item, index) => <Card key={index} data={item} />)}</div> */}
         {data && data.map((item, index) => <CardTest key={index} data={item} />)}
+
       </div>
     </div>
   );
