@@ -6,6 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import DataTable from './dataTable';
 import React,{useEffect,useState} from 'react';
+import { Toaster, toast } from 'sonner';
 
 function TableContact(){
     const [contacts, setContacts] = useState([]);
@@ -35,7 +36,7 @@ function TableContact(){
     };
   
     useEffect(() => {
-      fetch('http://localhost:3005/infoperso/all')
+      fetch(`${process.env.REACT_APP_API_URL}/infoperso/all`)
         .then(response => response.json())
         .then(data => setContacts(data));
     }, []);
@@ -43,7 +44,7 @@ function TableContact(){
     const addContact = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:3005/infoperso/add', {
+        const response = await fetch( `${process.env.REACT_APP_API_URL}/infoperso/add`, {
           method: 'POST',
           headers: {  'Content-Type': 'application/json',
           'authorization': token,
@@ -59,15 +60,16 @@ function TableContact(){
         const data = await response.json();
         setContacts([...contacts, data]);
         setOpen(false);
+        toast.success('Contact ajouté avec succès');
       } catch (error) {
         console.error('Le token est expiré: Reconnecte toi ou Degage 😈​', error);
       }
     };
   
-    const updateContact = async (id) => {
+    const updateContact = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch(`http://localhost:3005/infoperso/update/${editContact._id}`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/infoperso/update/${editContact._id}`, {
           method: 'PUT',
           headers: {  'Content-Type': 'application/json','authorization':token, },
           body: JSON.stringify(editContact),
@@ -82,6 +84,7 @@ function TableContact(){
        setContacts(contacts.map(contact => contact._id === updatedContact._id ? updatedContact : contact));
        setOpen(false);
        setEditContact(null);
+        toast.info('Contact modifié avec succès');
      } catch (error) {
        console.error('There has been a problem with your fetch operation:', error);
      }
@@ -118,7 +121,7 @@ function TableContact(){
                 onClick={async () => {
                   try {
                     const token = localStorage.getItem('token');
-                    const response = await fetch(`http://localhost:3005/infoperso/delete/${params.row._id}`, {
+                    const response = await fetch(`${process.env.REACT_APP_API_URL}/infoperso/delete/${params.row._id}`, {
                       method: 'DELETE',
                       headers: {  'Content-Type': 'application/json','authorization':token, },
                     });
@@ -129,6 +132,7 @@ function TableContact(){
       
                     // Rechargez les données après la suppression
                     setContacts(contacts.filter(projet => projet._id !== params.row._id));
+                    toast.error(`Contact ${params.row.email} à été supprimé​`);
                   } catch (error) {
                     console.error('There has been a problem with your fetch operation:', error);
                   }
@@ -202,6 +206,7 @@ function TableContact(){
         </DialogActions>
       </Dialog>
   <DataTable data={contacts} columns={columnsContact} />
+  <Toaster richColors position="top-left" expand={true} />
        </>
     )
 } export default TableContact;

@@ -6,6 +6,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
+import { Toaster, toast } from 'sonner';
 
 function TableProjet(){
     const [projets, setProjets] = useState([]);
@@ -35,7 +36,7 @@ function TableProjet(){
   };
 
   useEffect(() => {
-    fetch('http://localhost:3005/projet/all')
+    fetch(`${process.env.REACT_APP_API_URL}/projet/all`)
       .then(response => response.json())
       .then(data => setProjets(data));
   }, []);
@@ -43,7 +44,7 @@ function TableProjet(){
   const addOneProjet = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3005/projet/add', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/projet/add`, {
         method: 'POST',
         headers: {  'Content-Type': 'application/json',
         'authorization': token,},
@@ -58,6 +59,7 @@ function TableProjet(){
       const data = await response.json();
       setProjets([...projets, data]);
       setOpen(false);
+      toast.success('Projet ajouté avec succès 🚀');
     } catch (error) {
       console.error('There has been a problem with your fetch operation:', error);
     }
@@ -66,7 +68,7 @@ function TableProjet(){
   const updateProjet = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:3005/projet/update/${editingProjet._id}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/projet/update/${editingProjet._id}`, {
         method: 'PUT',
         headers: {  'Content-Type': 'application/json',
         'authorization':token,},
@@ -82,6 +84,7 @@ function TableProjet(){
      setProjets(projets.map(projet => projet._id === updatedProjet._id ? updatedProjet : projet));
      setOpen(false);
      setEditingProjet(null);
+      toast.info('Projet modifié avec succès 🚀');
    } catch (error) {
      console.error('There has been a problem with your fetch operation:', error);
    }
@@ -117,7 +120,7 @@ function TableProjet(){
               onClick={async () => {
                 try {
                   const token = localStorage.getItem('token');
-                  const response = await fetch(`http://localhost:3005/projet/delete/${params.row._id}`, {
+                  const response = await fetch(`${process.env.REACT_APP_API_URL}/projet/delete/${params.row._id}`, {
                     method: 'DELETE',
                     headers: {  'Content-Type': 'application/json',
                     'authorization':token, },
@@ -129,6 +132,7 @@ function TableProjet(){
     
                   // Rechargez les données après la suppression
                   setProjets(projets.filter(projet => projet._id !== params.row._id));
+                  toast.error(`Projet ${params.row.title} à été supprimé​`);
                 } catch (error) {
                   console.error('There has been a problem with your fetch operation:', error);
                 }
@@ -203,6 +207,7 @@ function TableProjet(){
         </DialogActions>
       </Dialog>
   <DataTable data={projets} columns={columnsProjet} />
+  <Toaster richColors position="top-left" expand={true} />
        </>
     )
 } export default TableProjet;

@@ -4,7 +4,7 @@ import Card from '../components/card';
 function Project() {
   const [data, setData] = useState(null);
   useEffect(() => {
-    fetch('http://localhost:3005/projet/all')
+    fetch(`${process.env.REACT_APP_API_URL}/projet/all`)
       .then((response) => response.json())
       .then((data) => setData(data))
       .catch((error) => console.error('Erreur:', error));

@@ -6,6 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import DataTable from './dataTable';
 import React,{useEffect,useState} from 'react';
+import { Toaster, toast } from 'sonner';
 
 function TableExPro(){
     const [experiences, setExperiences] = useState([]);
@@ -36,7 +37,7 @@ function TableExPro(){
     };
   
     useEffect(() => {
-      fetch('http://localhost:3005/expro/all')
+      fetch(`${process.env.REACT_APP_API_URL}/expro/all`)
         .then(response => response.json())
         .then(data => setExperiences(data));
     }, []);
@@ -44,7 +45,7 @@ function TableExPro(){
     const addOneExp = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:3005/expro/add', {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/expro/add`, {
           method: 'POST',
           headers: {  'Content-Type': 'application/json',
           'authorization': token,
@@ -60,15 +61,16 @@ function TableExPro(){
         const data = await response.json();
         setExperiences([...experiences, data]);
         setOpen(false);
+        toast.success('Expérience ajoutée avec succès 🚀​');
       } catch (error) {
-        console.error('Le token est expiré: Reconnecte toi ou Degage 😈​', error);
+        toast.error('Le token est expiré 😈​', error)
       }
     };
   
     const updateExp = async (id) => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch(`http://localhost:3005/expro/update/${editExp._id}`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/expro/update/${editExp._id}`, {
           method: 'PUT',
           headers: {  'Content-Type': 'application/json','authorization':token, },
           body: JSON.stringify(editExp),
@@ -83,6 +85,7 @@ function TableExPro(){
        setExperiences(experiences.map(projet => projet._id === updatedExp._id ? updatedExp : projet));
        setOpen(false);
        setEditExp(null);
+        toast.info('Expérience modifiée avec succès 🚀​');
      } catch (error) {
        console.error('There has been a problem with your fetch operation:', error);
      }
@@ -120,7 +123,7 @@ function TableExPro(){
                 onClick={async () => {
                   try {
                     const token = localStorage.getItem('token');
-                    const response = await fetch(`http://localhost:3005/expro/delete/${params.row._id}`, {
+                    const response = await fetch(`${process.env.REACT_APP_API_URL}/expro/delete/${params.row._id}`, {
                       method: 'DELETE',
                       headers: {  'Content-Type': 'application/json','authorization':token, },
                     });
@@ -131,6 +134,7 @@ function TableExPro(){
       
                     // Rechargez les données après la suppression
                     setExperiences(experiences.filter(projet => projet._id !== params.row._id));
+                    toast.error(`L'entreprise ${params.row.entreprise} à été supprimée​`);
                   } catch (error) {
                     console.error('There has been a problem with your fetch operation:', error);
                   }
@@ -214,6 +218,8 @@ function TableExPro(){
         </DialogActions>
       </Dialog>
   <DataTable data={experiences} columns={columnsExp} />
+
+  <Toaster richColors position="top-left" expand={true} />
        </>
         
     )

@@ -4,7 +4,7 @@ function Experience() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:3005/expro/all')
+    fetch(`${process.env.REACT_APP_API_URL}/expro/all`)
       .then((response) => response.json())
       .then((data) => setData(data))
       .catch((error) => console.error('Erreur:', error));

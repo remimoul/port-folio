@@ -5,7 +5,7 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa';
 function Contact() {
   const [data, setData] = useState(null);
   useEffect(() => {
-    fetch('http://localhost:3005/infoperso/all')
+    fetch(`${process.env.REACT_APP_API_URL}/infoperso/all`)
       .then((response) => response.json())
       .then((data) => setData(data))
       .catch((error) => console.error('Erreur:', error));
