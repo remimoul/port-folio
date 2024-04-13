@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Photo from '../assets/image/profile-pic.png';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 function Contact() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [subject, setSubject] = useState('');
-  const [message, setMessage] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Ici, vous pouvez gérer l'envoi du formulaire, par exemple en envoyant les données à une API ou en les enregistrant dans une base de données.
-    console.log({ name, email, subject, message });
-  };
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_API_URL}/infoperso/all`)
+      .then((response) => response.json())
+      .then((data) => setData(data))
+      .catch((error) => console.error('Erreur:', error));
+  }, []);
   return (
 
     <div className='w-auto mx-7 pt-28 flex justify-center items-center'>
@@ -30,11 +28,20 @@ function Contact() {
     <div className="map h-400 md:h-auto">
     <img className="w-15 h-16 mr-auto" alt="remi" src={Photo} />
     <h1 className="text-2xl font-bold font-mono italic mt-4 mx-20 text-white">Mes coordonnées</h1>
-    <div className="flex flex-col items-center ">
-  <span className="text-2xl font-mono italic mt-4 mx-20 text-white">Email: moulremi@orange.fr</span>
-  <span className="text-2xl font-mono italic mt-4 mx-20 text-white">Téléphone: 06 52 50 50 50</span>
+    
+      {data && data.map((item, index) => (
+<div key={index} className="flex flex-col items-center ">
+      <span  className="text-2xl font-mono italic mt-4 mx-20 text-white">Email: {item.email}</span>
+      <span className="text-2xl font-mono italic mt-4 mx-20 text-white">Téléphone: {item.phone}</span>
+      <span className="text-2xl font-mono italic mt-4 mx-20 text-white">
+       <a href={item.github} target="_blank" rel="noreferrer">
+        <FaGithub />
+      </a></span>
+      <span className="text-2xl font-mono italic mt-4 mx-20 text-white">  <a href={item.linkedin} target="_blank" rel="noreferrer">
+        <FaLinkedin />
+      </a></span>
 </div>
-   
+     ))}
     </div>
   </div>
 </section>

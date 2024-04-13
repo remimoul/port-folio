@@ -8,28 +8,27 @@ import DataTable from './dataTable';
 import React,{useEffect,useState} from 'react';
 import { Toaster, toast } from 'sonner';
 
-function TableExPro(){
-    const [experiences, setExperiences] = useState([]);
-    const [editExp, setEditExp] = useState(null);
-    const [newExp, setNewExp] = useState({
-      entreprise: '',
-      description: '',
-      poste: '',
-      logoUrl: '',
-      annee: '',
+function TableContact(){
+    const [contacts, setContacts] = useState([]);
+    const [editContact, setEditContact] = useState(null);
+    const [newContact, setNewContact] = useState({
+      email: '',
+      phone: '',
+      github: '',
+      linkedin: '',
     });
   
     const [open, setOpen] = useState(false);
   
-    const inputChangeExp = (event) => {
-      if(editExp) {
-        setEditExp({
-          ...editExp,
+    const inputChangeContact = (event) => {
+      if(editContact) {
+        setEditContact({
+          ...editContact,
           [event.target.name]: event.target.value,
         });
       } else {
-        setNewExp({
-        ...newExp,
+        setNewContact({
+        ...newContact,
         [event.target.name]: event.target.value,
       });
       }
@@ -37,20 +36,20 @@ function TableExPro(){
     };
   
     useEffect(() => {
-      fetch(`${process.env.REACT_APP_API_URL}/expro/all`)
+      fetch(`${process.env.REACT_APP_API_URL}/infoperso/all`)
         .then(response => response.json())
-        .then(data => setExperiences(data));
+        .then(data => setContacts(data));
     }, []);
   
-    const addOneExp = async () => {
+    const addContact = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/expro/add`, {
+        const response = await fetch( `${process.env.REACT_APP_API_URL}/infoperso/add`, {
           method: 'POST',
           headers: {  'Content-Type': 'application/json',
           'authorization': token,
          },
-          body: JSON.stringify(newExp),
+          body: JSON.stringify(newContact),
         });
   
         if (!response.ok) {
@@ -59,21 +58,21 @@ function TableExPro(){
   
         // Rechargez les données après l'ajout
         const data = await response.json();
-        setExperiences([...experiences, data]);
+        setContacts([...contacts, data]);
         setOpen(false);
-        toast.success('Expérience ajoutée avec succès 🚀​');
+        toast.success('Contact ajouté avec succès');
       } catch (error) {
-        toast.error('Le token est expiré 😈​', error)
+        console.error('Le token est expiré: Reconnecte toi ou Degage 😈​', error);
       }
     };
   
-    const updateExp = async (id) => {
+    const updateContact = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/expro/update/${editExp._id}`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/infoperso/update/${editContact._id}`, {
           method: 'PUT',
           headers: {  'Content-Type': 'application/json','authorization':token, },
-          body: JSON.stringify(editExp),
+          body: JSON.stringify(editContact),
         });
   
         if (!response.ok) {
@@ -81,23 +80,22 @@ function TableExPro(){
         }
   
        // Rechargez les données après la mise à jour
-       const updatedExp = await response.json();
-       setExperiences(experiences.map(projet => projet._id === updatedExp._id ? updatedExp : projet));
+       const updatedContact = await response.json();
+       setContacts(contacts.map(contact => contact._id === updatedContact._id ? updatedContact : contact));
        setOpen(false);
-       setEditExp(null);
-        toast.info('Expérience modifiée avec succès 🚀​');
+       setEditContact(null);
+        toast.info('Contact modifié avec succès');
      } catch (error) {
        console.error('There has been a problem with your fetch operation:', error);
      }
     };
   
-    const columnsExp = [
+    const columnsContact = [
       { field: '_id', headerName: 'ID', width: 100 },
-      { field: 'annee', headerName: 'Année', width: 100 },
-      { field: 'poste', headerName: 'Poste', width: 200},
-      { field: 'entreprise', headerName: 'Entreprise', width: 100 },
-      { field: 'description', headerName: 'Description', width: 200 },
-      { field: 'logoUrl', headerName: 'Logo URL', width: 200 },
+      { field: 'email', headerName: 'Email', width: 100 },
+      { field: 'phone', headerName: 'Mobile', width: 200},
+      { field: 'github', headerName: 'GitHub', width: 200 },
+      { field: 'linkedin', headerName: 'LinkedIn', width: 200 },
 
       {
           field: 'actions',
@@ -110,7 +108,7 @@ function TableExPro(){
                 color="primary"
                 size="small"
                 style={{ marginLeft: 16 }}
-                onClick={() => {setEditExp(params.row);
+                onClick={() => {setEditContact(params.row);
                   setOpen(true);}}
               >
                 Modifier
@@ -123,7 +121,7 @@ function TableExPro(){
                 onClick={async () => {
                   try {
                     const token = localStorage.getItem('token');
-                    const response = await fetch(`${process.env.REACT_APP_API_URL}/expro/delete/${params.row._id}`, {
+                    const response = await fetch(`${process.env.REACT_APP_API_URL}/infoperso/delete/${params.row._id}`, {
                       method: 'DELETE',
                       headers: {  'Content-Type': 'application/json','authorization':token, },
                     });
@@ -133,8 +131,8 @@ function TableExPro(){
                     }
       
                     // Rechargez les données après la suppression
-                    setExperiences(experiences.filter(projet => projet._id !== params.row._id));
-                    toast.error(`L'entreprise ${params.row.entreprise} à été supprimée​`);
+                    setContacts(contacts.filter(projet => projet._id !== params.row._id));
+                    toast.error(`Contact ${params.row.email} à été supprimé​`);
                   } catch (error) {
                     console.error('There has been a problem with your fetch operation:', error);
                   }
@@ -154,73 +152,61 @@ function TableExPro(){
     return (
         <>
              <div className='flex mt-8'>   
-<h2 className="text-3xl font-mono text-white font-bold">​💼​Expériences Professionnels : </h2>
+<h2 className="text-3xl font-mono text-white font-bold">​📲​ Contact : </h2>
         <div className="ml-auto">
         <Button
           variant="contained"
           color="secondary"
           style={{ marginBottom: 16 }}
-          onClick={() => {setOpen(true);setEditExp(false)}}
+          onClick={() => {setOpen(true);setEditContact(false)}}
         >
-          Ajouter une expérience
+          Ajouter un contact
         </Button>
         </div>
         </div>
-        <Dialog open={open} onClose={() => {setOpen(false);setEditExp(null)}} maxWidth='xl'>
-        <DialogTitle>{editExp ? '🔧 Modifier lexpérience 🔧' : '🔥​ Ajouter une nouvelle expérience 🔥​'}</DialogTitle>
+        <Dialog open={open} onClose={() => {setOpen(false);setEditContact(null)}} maxWidth='xl'>
+        <DialogTitle>{editContact ? '🔧 Modifier Contact 🔧' : '​Ajouter les informations personelles​ ➕​'}</DialogTitle>
         <DialogContent>
           <TextField
-            name="entreprise"
-            label="Entreprise"
-            value={editExp ? editExp.entreprise : newExp.entreprise}
-            onChange={inputChangeExp}
+            name="email"
+            label="Email"
+            value={editContact ? editContact.email : newContact.email}
+            onChange={inputChangeContact}
             fullWidth
             margin='normal'
           />
             <TextField
-            name="poste"
-            label="Poste"
-            value={editExp ? editExp.poste : newExp.poste}
-            onChange={inputChangeExp}
+            name="phone"
+            label="Téléphone"
+            value={editContact ? editContact.phone : newContact.phone}
+            onChange={inputChangeContact}
             fullWidth
             margin='normal'
           />
           <TextField
-            name="description"
-            label="Description du poste occupé"
-            multiline
-            rows={6}
-            value={editExp ? editExp.description : newExp.description}
-            onChange={inputChangeExp}
+            name="github"
+            label="GitHub (URL)"
+            value={editContact ? editContact.github : newContact.github}
+            onChange={inputChangeContact}
             fullWidth
             margin='normal'
           />
           <TextField
-            name="logoUrl"
-            label="Logo de l'entreprise (URL)"
-            value={editExp ? editExp.logoUrl : newExp.logoUrl}
-            onChange={inputChangeExp}
-            fullWidth
-            margin='normal'
-          />
-          <TextField
-            name="annee"
-            label="Année de l'expérience"
-            value={editExp ? editExp.annee : newExp.annee}
-            onChange={inputChangeExp}
+            name="linkedin"
+            label="LinkedIn (URL)"
+            value={editContact ? editContact.linkedin : newContact.linkedin}
+            onChange={inputChangeContact}
             fullWidth
             margin='normal'
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => {setOpen(false);setEditExp(null)}} color='error' variant='contained'>Annuler</Button>
-          <Button onClick={editExp ? () => updateExp(editExp._id) : addOneExp} color='success' variant='contained'>{editExp ? 'Modifier' : 'Ajouter'}</Button>
+          <Button onClick={() => {setOpen(false);setEditContact(null)}} color='error' variant='contained'>Annuler</Button>
+          <Button onClick={editContact ? () => updateContact(editContact._id) : addContact} color='success' variant='contained'>{editContact ? 'Modifier' : 'Ajouter'}</Button>
         </DialogActions>
       </Dialog>
-  <DataTable data={experiences} columns={columnsExp} />
-
+  <DataTable data={contacts} columns={columnsContact} />
   <Toaster richColors position="top-left" expand={true} />
        </>
-        
     )
-} export default TableExPro;
+} export default TableContact;

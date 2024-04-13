@@ -12,9 +12,6 @@ function NavBar() {
             <li>
               <Link to="/">Accueil</Link>
             </li>
-            {/* <li>
-              <Link to="/about">Qui suis-je ?</Link>
-            </li> */}
             <li>
               <Link to="/projects">Mes projets</Link>
             </li>

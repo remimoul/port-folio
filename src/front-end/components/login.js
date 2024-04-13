@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {Toaster, toast } from 'sonner';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -9,7 +10,7 @@ function Login() {
   const loginSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch('http://localhost:3005/user/login', {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/user/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -20,17 +21,16 @@ function Login() {
     const data = await response.json();
 
     if (response.ok) {
-      // Login successful
-      console.log('Login successful', data);
       localStorage.setItem('token', data.token);
       navigate('/dashboard');
+      toast.success('Connexion réussie 🚀​',data);
     } else {
-      // Login failed
-      console.log('Login failed', data);
+      toast.error(data.message);
     }
   };
 
   return (
+    <>
     <div className="flex items-center justify-center h-screen bg-blue-900">
       <form className="w-72 space-y-4" onSubmit={loginSubmit}>
         <input
@@ -55,6 +55,8 @@ function Login() {
         </button>
       </form>
     </div>
+    <Toaster richColors position="top-center" expand={true} />
+    </>
   );
 }
 export default Login;
