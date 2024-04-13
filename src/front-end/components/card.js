@@ -1,30 +1,37 @@
-function Card({ data }) {
+import * as React from 'react';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { CardActionArea } from '@mui/material';
+import Button from '@mui/material/Button';
+import CardActions from '@mui/material/CardActions';
+export default function ActionAreaCard({ data }) {
   return (
-    <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{data.title}</h5>
-      <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{data.description}</p>
-      <a
-        href={data.link}
-        className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-      >
-        Read more
-        <svg
-          className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 14 10"
-        >
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M1 5h12m0 0L9 1m4 4L9 9"
-          />
-        </svg>
-      </a>
-    </div>
+    <Card sx={{ maxWidth: 345 }} className="ml-10 my-4" >
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          className="min-w-custom-min max-w-custom-max min-h-custom-min max-h-custom-max"
+          image={data.imageUrl}
+          alt="img card"
+        />
+        <CardContent className="bg-gray-500">
+          <Typography gutterBottom variant="h5" component="div">
+            {data.title}
+          </Typography>
+          <Typography variant="body1" color="text.secondary">
+            {data.description}
+          </Typography>
+        </CardContent>
+        <CardActions>
+        <Button size="small">
+        <a href={data.link} target="_blank" rel="noopener noreferrer">
+      <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub" width="50" height="50" />
+    </a>
+        </Button>
+      </CardActions>
+      </CardActionArea>
+    </Card>
   );
 }
-export default Card;

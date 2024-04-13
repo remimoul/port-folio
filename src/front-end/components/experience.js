@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import CardTest from '../components/cardtest';
 
 function Experience() {
   const [data, setData] = useState(null);
@@ -11,14 +10,11 @@ function Experience() {
       .catch((error) => console.error('Erreur:', error));
   }, []);
 
-  
   return (
     <div className="w-auto mx-7 pt-28">
     <div className="flex items-center gap-2 w-fit mx-20 ">
       <h1 className="text-4xl md:text-6xl font-bold text-white ">​​💼​Expériences Professionnels</h1>
     </div>
-
-
     <div className="relative mt-8 max-lg:mx-6">
 {/* methode sort pour trier les données selon lannée */}
       {data && [...data].sort((a, b) => b.annee - a.annee).map((item, index) => 

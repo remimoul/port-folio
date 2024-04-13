@@ -15,11 +15,12 @@ function Home() {
         <h1 className="text-3xl font-bold font-mono text-white">Rémi Moul</h1>
       </div>
       <h1 className="text-6xl font-bold font-mono italic mt-4 mx-20 text-white">Developpeur Web Full-Stack</h1>
-      <p className="text-2xl font-mono italic mt-4 mx-20 text-white">
-        Bonjour ! Je m'appelle Rémi, développeur web domicilié en région parisienne. Mes amis me disent que je suis
-        positif, persévérant, ambitieux 😉 J'aime être productif et créatif, c'est pourquoi j'ai choisi la voie du
-        développeur. Actuellement, j'étudie en à la MyDigitalSchool (Bachelor) pour devenir développeur full-stack.
-      </p>
+      <section className="text-2xl font-mono italic mt-4 mx-5 md:ml-20 text-white">
+  “ Salutations ! Je m'apelle Rémi, un développeur web passionné basé en région parisienne.
+  <br/>Reconnu pour ma positivité, ma persévérance et mon ambition par ceux qui me connaissent, je trouve mon épanouissement dans la productivité et la créativité.
+  <br/>C’est cette passion pour la création qui m’a conduit sur le chemin du développement web.
+  <br/>Actuellement, je suis en train d’approfondir mes compétences en développement full-stack à la MyDigitalSchool. ”
+</section>
 
       <h2 className="text-5xl font-bold font-mono italic mt-16 mx-20 text-white flex ">Skill</h2>
       <div className="flex md:justify-start justify-center mt-10 mb-12 md:mb-0">
