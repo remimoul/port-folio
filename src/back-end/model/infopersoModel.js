@@ -2,18 +2,22 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let infopersoSchema = new Schema({
-  name: {
+  email: {
     type: String,
     required: true,
   },
-  bio: {
+  phone: {
     type: String,
-    required: true,
+    required: false,
   },
-  profilePictureUrl: {
+  github: {
     type: String,
-    required: true,
+    required: false,
   },
-});
+  linkedin: {
+    type: String,
+    required: false,
+  },
+},{ timestamps: true });
 
 module.exports = mongoose.model('Infoperso', infopersoSchema);

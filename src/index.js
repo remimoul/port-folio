@@ -9,7 +9,7 @@ import Experience from './front-end/components/experience';
 import Contact from './front-end/components/contact';
 import Login from './front-end/components/login';
 import Dashboard from './front-end/components/dashboard';
-import AuthWrapper from './front-end/components/authToken';
+import AuthWrapper from './front-end/components/authWrapper';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
