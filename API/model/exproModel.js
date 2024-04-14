@@ -1,6 +1,4 @@
-const { logDOM } = require('@testing-library/react');
 const mongoose = require('mongoose');
-const { format } = require('prettier');
 const Schema = mongoose.Schema;
 
 let exProSchema = new Schema({
