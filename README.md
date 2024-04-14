@@ -11,6 +11,18 @@ Ce portfolio est une collection de mes travaux et projets en développement web.
 - Bases de données: MongoDB, PostgreSQL, MySQL
 - Outils: Git, Docker
 
+## Installation 🪶
+
+To install and run this project locally, follow these steps:
+
+```bash
+git clone https://github.com/remimoul/port-folio
+cd port-folio
+npm install
+npm start
+npm run server
+```
+
 ## Contact
 
 Si vous souhaitez me contacter, vous pouvez m'envoyer un email à [votre email](mailto:remi.moul@my-digital-school.org) ou me suivre sur [LinkedIn](#).
