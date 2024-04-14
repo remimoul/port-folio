@@ -7,15 +7,9 @@
 
 ## Description 🤔
 
-Port Folio est une application web.
-
 Il s’agit d’une plateforme interactive qui met en valeur mes compétences et réalisations en développement web.
-
 Sur le plan technique, Port Folio fonctionne en tandem avec une API pour gérer les données.
-
 Le frontend de l’application comprend une interface utilisateur (front office) pour gérer les données de manière efficace et intuitive.
-
-Cette interface est conçue pour offrir une expérience utilisateur optimale tout en permettant une gestion efficace des données.
 
 ## Installation 🪶
 
