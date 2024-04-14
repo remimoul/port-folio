@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3005;
+const port = process.env.PORT || 3000;
 const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config();
@@ -21,10 +21,6 @@ const swaggerOptions = {
   apis: ["./api-docs/swagger.js"],
 };
 
-
-
-// puis utilisez process.env.MONGO_URL
-// mongoose.connect('mongodb://127.0.0.1:27017/portfolio');
 mongoose.connect(process.env.MONGO_URL);
 
 app.use(express.urlencoded({ extended: true }));
